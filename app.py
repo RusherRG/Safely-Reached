@@ -10,7 +10,6 @@ def test():
 def getRoutes():
     source = request.args.get('source')
     destination = request.args.get('destination')
-
     source.replace(' ', '+')
     destination.replace(' ', '+')
     key = 'AIzaSyCxb7VjOyG0RqazuliBkyZlP3h437hshkk'
@@ -19,4 +18,4 @@ def getRoutes():
     r = r.text
     return "hello"
 
-app.run()
+app.run(debug=True)
