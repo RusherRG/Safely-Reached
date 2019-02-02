@@ -18,7 +18,7 @@ body {
 ul {
     list-style-type: none;
     z-index:9;
-    
+    padding:0;
 }
 li a {
     display: block;
@@ -36,6 +36,7 @@ a:hover {
     z-index:5;
     top:0;
     left: 0;
+    
     background-color:#005;
 }
 input {
@@ -68,12 +69,156 @@ input::-webkit-search-cancel-button {
     z-index:4;
 }
 
+#sosmob{
+    position: absolute;
+    bottom:8rem;
+    left: 2.5rem;
+    border-radius: 100%;
+    background-color: #f00;
+    padding:1rem;
+    box-shadow: rgb(73, 73, 73) 2px 2px 2px;
+    display:none;
+    z-index:4;
+    
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 9;
+    
+  }
+
+  .modal input{
+      padding: 1rem;
+      margin: 0.2rem;
+      font-size: 1.5rem;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+#searchfield{
+    padding: 1rem;
+    width:80%;
+    margin:auto;
+}
+#direct{
+    padding:0.1rem;
+    margin: 1rem auto;
+    border-radius : 30px 30px;
+    border-style: solid;
+    border-width: 2px;  
+    border-color: #fff;  
+    color:white;
+    font-size:1.5rem;
+    width:70%;
+    transition: background-color 1s;
+}
+#direct:hover{
+    background-color: #fff;
+    color:rgb(0, 14, 51);
+    cursor: pointer;
+}
+
+#direct:focus{
+    background-color: #fff;
+    color:rgb(0, 14, 51);
+    cursor: pointer;
+}
+
+#sosdiv{
+    bottom: 1rem;
+    position: absolute;
+    width:100%;
+}
+
+#sosbutton{
+    padding:0.1rem;
+    margin: 1rem auto;
+    border-radius : 30px 30px;
+    border-style: solid;
+    border-width: 2px;  
+    border-color: #fff;  
+    color:#fff;
+    font-size:1.5rem;
+    width:70%;
+    transition: background-color 1s;
+}
+#sosbutton:hover{
+    background-color: #f00;
+    color:#fff;
+    cursor: pointer;
+}
+
+#sosbutton:focus{
+    background-color:#f00;
+    color:#fff;
+    cursor: pointer;
+}
+
+
+#savecontact{
+    padding:0.1rem;
+    margin: 1rem auto;
+    border-radius : 30px 30px;
+    border-style: solid;
+    border-width: 2px;  
+    border-color: #005;  
+    color:#005;
+    font-size:1.5rem;
+    width:30%;
+    transition: background-color 1s;
+}
+
+#savecontact:hover{
+    background-color: #005;
+    color:rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+#savecontact:focus{
+    background-color: #005;
+    color:rgb(255, 255, 255);
+    cursor: pointer;
+}
+
 input[type=search] {
     background: #ededed url(./Icons/Pin.png) no-repeat 5px center;
     border: solid 1px #ccc;
     padding: 9px 10px 9px 32px;
     width: 75%;
-    
+    margin: 10px 0;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
     border-radius: 10em;
@@ -92,13 +237,17 @@ input[type=search]:focus {
     box-shadow: 0 0 5px rgba(109,207,246,.5);
 }
 
-li{
-    padding:2rem;
-}
 
 li a:hover:not(.active) {
     background-color: #555;
     color: white;
+    cursor: pointer;
+}
+
+li a:focus:not(.active) {
+    background-color: #555;
+    color: white;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
@@ -106,7 +255,32 @@ li a:hover:not(.active) {
         transform: translateX(-100%);
         width: 70%;
     }
-    #ham{
+
+    
+
+    #ham, #sosmob{
         display: block;
     }
+
+    .modal-content{
+        width: 80%;
+    }
+
+    #savecontact{
+        width:80%;
+    }
 }
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
