@@ -4,7 +4,7 @@ app = Flask(__name__,template_folder=".")
 
 @app.route('/')
 def test():
-    return render_template('test.html')
+    return render_template('Hatel.html')
     
 @app.route('/getRoutes', methods=['GET'])
 def getRoutes():
@@ -27,5 +27,5 @@ def safety():
     data = request.json
     pprint.pprint(data)
     return jsonify(data)
-if __name__ == "__main__":
-    app.run(use_reloader=False)
+
+

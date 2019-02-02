@@ -15,7 +15,7 @@ body {
     padding: 0;
     color: #b6e6e4;
 }  
-  ul {
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -24,11 +24,14 @@ body {
     position: fixed;
     height: 100%;
     overflow: auto;
-  }
-  a:hover {
+}
+a:hover {
     color: rgb(200, 230, 250);
 }
-
+#sidepane{
+    float: left;
+    z-index:5;
+}
 input {
     outline: none;
 }
@@ -42,7 +45,25 @@ input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
     display: none; 
 }
+#love{
+    transform: translateY(25%);
+}
 
+#mapshow{
+    float:left;
+    
+}
+#ham{
+    position: absolute;
+    bottom:2.5rem;
+    left: 2.5rem;
+    border-radius: 100%;
+    background-color: rgb(0, 14, 51);
+    padding:1.5rem;
+    box-shadow: rgb(73, 73, 73) 2px 2px 2px;
+    display:none;
+    z-index:5;
+}
 
 input[type=search] {
     background: #ededed url(./Icons/Pin.png) no-repeat 5px center;
@@ -59,7 +80,7 @@ input[type=search] {
     transition: all .5s;
 }
 input[type=search]:focus {
-    width: 130px;
+    width: 78%;
     background-color: #fff;
     border-color: rgb(250, 195, 252);
     
@@ -68,19 +89,24 @@ input[type=search]:focus {
     box-shadow: 0 0 5px rgba(109,207,246,.5);
 }
   
-  li a {
+li a {
     display: block;
     color: rgb(191, 223, 253);
     padding: 8px 16px;
     text-decoration: none;
-  }
+}
   
-  /* li a.active {
-    background-color: #4CAF50;
-    color: white;
-  } */
-  
-  li a:hover:not(.active) {
+
+li a:hover:not(.active) {
     background-color: #555;
     color: white;
-  }
+}
+
+@media screen and (max-width: 800px) {
+    #sidepane{
+        transform: translateX(-100%);
+    }
+    #ham{
+        display: block;
+    }
+}
