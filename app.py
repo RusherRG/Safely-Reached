@@ -28,10 +28,11 @@ def findsafety():
     safety(path)
     return jsonify(data)
 def safety(paths):
-    print(len(paths))
+    print("#Routes :",len(paths))
     factors = ["bakery","bank","beauty_salon","bicycle_store","book_store","cafe","city_hall","clothing_store","convenience_store","courthouse","dentist","department_store","doctor","electronics_store","fire_station","florist","furniture_store","gas_station","home_goods_store","hospital","jewelry_store","library","local_government_office","lodging","movie_theater","pet_store","pharmacy","police","post_office","restaurant","school","shoe_store","shopping_mall","stadium","subway_station","supermarket","synagogue","train_station","transit_station","zoo"]
     index = []
     Places = []
+    count = 0
     for route in paths:
         path = route['overview_path']
         index.append([0 for i in range(len(path))])
@@ -48,10 +49,11 @@ def safety(paths):
             for place in places['results']:
                 for factor in place['types']:
                     if factor in factors:
-                        index[-1][i] = 1
+                        count += 1
+                        index[-1][i] += 1
                         Places.append(place)
-    print(len(Places))
-    print(index) 
+                        break
+    print(count,len(Places),index)
     return 
 if __name__ == "__main__":
     app.run(use_reloader=False)
