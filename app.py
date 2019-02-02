@@ -64,8 +64,42 @@ def safety(paths):
                     l.append(place)
                     index[-1][i] += 1
             best.append(l)
+    arrangement(index)
     print(index)
+    return
     
-    return 
+
+def  arrangement(index):
+    # mxsf : max so far
+    # lc : least count. longest sequence of the least number
+    l = [i for i in range(len(index))]
+    for j in range(len(index)-1):
+        for i in range(len(index)-j-1):
+            if min(index[l[i]]) < min(index[l[i+1]]):
+                l[i], l[i+1] = l[i+1], l[i]
+            elif min(index[l[i]]) == min(index[l[i+1]]):
+                mv = min(index[l[i]])
+                lc = [0, 0]
+                mxsf = 0
+                for k in range(2):
+                    for e in index[l[i+k]]:
+                        if e == mv:
+                            mxsf += 1
+                        else:
+                            lc[k] = mxsf if mxsf > lc[k] else lc[k]
+                            mxsf = 0
+                    lc[k] = mxsf if mxsf > lc[k] else lc[k]
+                if lc[0] > lc[1]:
+                    l[i], l[i+1] = l[i+1], l[i]
+                elif lc[0] == lc[1]:
+                    counts = [0, 0]
+                    for k in range(2):
+                        for e in index[l[i+k]]:
+                            if e == mv:
+                                counts[k]+=1
+                    if counts[0] > counts[1]:
+                        l[i], l[i+1] = l[i+1], l[i]
+    print(l)
+    return l
 if __name__ == "__main__":
     app.run(use_reloader=False)
