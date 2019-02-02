@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-import requests
+import requests,pprint
 app = Flask(__name__,template_folder=".")
 
 @app.route('/')
@@ -25,7 +25,7 @@ def getRoutes():
 @app.route('/findsafety', methods=['POST'])
 def safety():
     data = request.json
-    print(data)
+    pprint.pprint(data)
     return jsonify(data)
 if __name__ == "__main__":
     app.run(use_reloader=False)
