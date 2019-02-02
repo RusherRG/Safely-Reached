@@ -151,14 +151,30 @@
         directionsService.route({
           origin: start,
           destination: end,
-          travelMode: 'DRIVING'
+          travelMode: 'DRIVING',
+          provideRouteAlternatives: true
         }, function(response, status) {
           if (status === 'OK') {
-            directionsDisplay.setDirections(response);
+            console.log(response);
+
+            var url = 'findsafety'
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(response)
+              }).then(response=>response.json()).then(jsonr => {directionsDisplay.setDirections(jsonr)});
+            //directionsDisplay.setDirections(response);
           } else {
             window.alert('Directions request failed due to ' + status);
           }
         });
+        /*var url = 'getRoutes?source='+start+'&destination='+end;
+        fetch(url).then(response=>response.json()).then(jsonr => {console.log(jsonr)});*/
+        //var j = await f.json();
+        
       }
     </script>
     <script async defer
