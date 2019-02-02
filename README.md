@@ -11,3 +11,5 @@ Safely Reached
 - Database Integration (MongoDB)
 - Live Location (SOS)
 - NeighbourHood Crimes (News/Twitter) 
+
+Ignored the timings not found
