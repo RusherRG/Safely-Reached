@@ -20,6 +20,12 @@ ul {
     z-index:9;
     
 }
+li a {
+    display: block;
+    color: rgb(191, 223, 253);
+    padding: 8px 16px;
+    text-decoration: none;
+  }
 a:hover {
     color: rgb(200, 230, 250);
 }
