@@ -14,24 +14,44 @@
    <div id = "sidepane">
         <ul>
                 
-                <li><h3>We <img id ="love" src="static/Icons/Safety.png"> your safety</h3></li>
-              
-               
-                <li><input type="search" placeholder="Source" id = "start"></li>
+                <li>
+                    <div id="searchfield">
+                    <h3>We <img id ="love" src="static/Icons/Safety.png"> your safety</h3><br/>
+                        <input type="search" placeholder="Source" id = "start"><br/>
+                        <input type="search" placeholder="Destination" id = "end"><br/>
             
-                
-                <li><input type="search" placeholder="Destination" id = "end"></li>
-            
-                <li><div id="Direct">GO!!</div></li>
+                            <div id="Direct">Search</div>
+                    </div>
                 <li><a href="#News">News</a></li>
-                <li><a href="#Contact">Contact</a></li>
+                <li><a id = "contact" onclick="contacts()">Contact</a></li>
+                
         </ul>
+        <div id="sosdiv">
+            <div id="sosbutton">SOS</div>
+        </div>
     </div>
     <div id="ham" onclick="hamburger()"><i class="fas fa-bars"></i></div>
+    <div id="sosmob" onclick="alert('sos')"> <i class="fas fa-exclamation-circle"></i></div>
           
     <div id="mapshow" onclick="hamburger_out()">
         <div id="map"></div>
     </div>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+                <span class="close" onclick="closemodal()">&times;</span>
+                <br/><br/>
+        <input placeholder = "My Name" id="userName" type="text"><br/>
+        <input placeholder = "Emergency Contact 1" id="emc1" type="text"><br/>
+        <input placeholder = "Emergency Contact 2" id="emc2" type="text"><br/>
+        <input placeholder = "Emergency Contact 3" id = "emc3" type="text"><br/>
+        <div id="savecontact" onclick="savecontact()">Save</div>
+    </div>
+    </div>
+    
+        
+    
     <script>
         var map
         
