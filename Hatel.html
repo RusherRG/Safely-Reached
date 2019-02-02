@@ -13,23 +13,23 @@
 <body>
    <div id = "sidepane">
         <ul>
-                <form>
-                    <h3>We <img id ="love" src="static/Icons/Safety.png"> your safety</h3>
-                </form>
-                <form>
-                    <input type="search" placeholder="Source" id = "start">
-                </form>
-                <form>
-                    <input type="search" placeholder="Destination" id = "end">
-                </form>
-                <div id="Direct">GO!!</div>
+                
+                <li><h3>We <img id ="love" src="static/Icons/Safety.png"> your safety</h3></li>
+              
+               
+                <li><input type="search" placeholder="Source" id = "start"></li>
+            
+                
+                <li><input type="search" placeholder="Destination" id = "end"></li>
+            
+                <li><div id="Direct">GO!!</div></li>
                 <li><a href="#News">News</a></li>
                 <li><a href="#Contact">Contact</a></li>
         </ul>
     </div>
     <div id="ham" onclick="hamburger()"><i class="fas fa-bars"></i></div>
           
-    <div id="mapshow">
+    <div id="mapshow" onclick="hamburger_out()">
         <div id="map"></div>
     </div>
     <script>

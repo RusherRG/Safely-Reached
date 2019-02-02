@@ -17,20 +17,20 @@ body {
 }  
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 25%;
-    background-color: #201a42; 
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+    z-index:9;
+    
 }
 a:hover {
     color: rgb(200, 230, 250);
 }
 #sidepane{
-    float: left;
+    position: absolute;
+    width:25vw;
+    height: 100%;
     z-index:5;
+    top:0;
+    left: 0;
+    background-color:#005;
 }
 input {
     outline: none;
@@ -49,20 +49,17 @@ input::-webkit-search-cancel-button {
     transform: translateY(25%);
 }
 
-#mapshow{
-    float:left;
-    
-}
+
 #ham{
     position: absolute;
     bottom:2.5rem;
     left: 2.5rem;
     border-radius: 100%;
     background-color: rgb(0, 14, 51);
-    padding:1.5rem;
+    padding:1rem;
     box-shadow: rgb(73, 73, 73) 2px 2px 2px;
     display:none;
-    z-index:5;
+    z-index:4;
 }
 
 input[type=search] {
@@ -88,14 +85,10 @@ input[type=search]:focus {
     -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
     box-shadow: 0 0 5px rgba(109,207,246,.5);
 }
-  
-li a {
-    display: block;
-    color: rgb(191, 223, 253);
-    padding: 8px 16px;
-    text-decoration: none;
+
+li{
+    padding:2rem;
 }
-  
 
 li a:hover:not(.active) {
     background-color: #555;
@@ -105,6 +98,7 @@ li a:hover:not(.active) {
 @media screen and (max-width: 800px) {
     #sidepane{
         transform: translateX(-100%);
+        width: 70%;
     }
     #ham{
         display: block;
