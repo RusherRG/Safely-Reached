@@ -25,7 +25,11 @@ def getRoutes():
 def findsafety():
     data = request.json
     path = data['routes']
-    safety(path)
+    rearranged = safety(path)
+    routes = [0]*len(rearranged)
+    for i in range(len(rearranged)):
+        routes[i] = data['routes'][rearranged[i]]
+    data['routes'] = routes
     return jsonify(data)
 def safety(paths):
     print("#Routes :",len(paths))
@@ -64,9 +68,9 @@ def safety(paths):
                     l.append(place)
                     index[-1][i] += 1
             best.append(l)
-    arrangement(index)
+    rearranged = arrangement(index)
     print(index)
-    return
+    return rearranged
     
 
 def  arrangement(index):
