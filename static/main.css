@@ -22,6 +22,10 @@ ul {
     z-index:9;
     padding:0;
 }
+
+#contact{
+    transform: translateY(-80%);
+}
 li a {
     display: block;
     color: rgb(191, 223, 253);
