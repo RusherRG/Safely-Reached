@@ -32,7 +32,7 @@
         </div>
     </div>
     <div id="ham" onclick="hamburger()"><i class="fas fa-bars"></i></div>
-    <div id="sosmob" onclick="alert('sos')"> <i class="fas fa-exclamation-circle"></i></div>
+    <div id="sosmob" onclick="sendsos()"> <i class="fas fa-exclamation-circle"></i></div>
           
     <div id="mapshow" onclick="hamburger_out()">
         <div id="map"></div>
@@ -133,7 +133,7 @@
         //document.getElementById('start').addEventListener('change', onChangeHandler);
         //document.getElementById('end').addEventListener('change', onChangeHandler);
         document.getElementById('Direct').addEventListener('click',onChangeHandler);
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition);
       }
 
 

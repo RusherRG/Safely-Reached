@@ -101,13 +101,14 @@ var closemodal = function()
 }
 
 var sendsos = function(){
-    var url = 'sos'
+    var url = '/sos'
     var tosend = {
-        un: localStorage['userName'],
-        ec1: localStorage['emc1'],
-        ec2: localStorage['emc2'],
-        ec3: localStorage['emc3']
+        username: localStorage['userName'] || '',
+        emc1: localStorage['emc1'] || '',
+        emc2: localStorage['emc2'] || '',
+        emc3: localStorage['emc3'] || ''
     }
+    console.log(tosend);
     fetch(url, {
     method: 'POST',
     headers: {

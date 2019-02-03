@@ -111,6 +111,23 @@ def  arrangement(index):
 @app.route('/sos',methods=['POST'])
 def sos():
     data = request.json
+    url = 'https://www.fast2sms.com/dev/bulk'
+    print(data)
+    numl = []
+    for i in range(1, 4):
+        if data['emc'+str(i)] != '':
+            numl.append(data['emc'+str(i)])
+    nums = ','.join(numl)
+    print(nums)
+    params = {
+        'sender_id':'FSTSMS',
+        'message': 'ALERT\nYou are getting this message because your friend '+data['username']+' sent an SOS signal.\nTheir location is: ',
+        'numbers': nums,
+        'language':'english',
+        'route':'p'
+    }
+    resp = requests.post(url, data=params, headers={'authorization': 'qe0xOBau29VkSQDdHmcFKX8forMGwj5gRtyPiNhpZJlE4UW6bYuP5pnKdFJX4q7WYQhf3HR61iGxCNzI'})
+    print(resp.text)
     print(data)
     return jsonify(data)
 
@@ -119,3 +136,4 @@ def send_js(path):
     return send_from_directory('.', path)
 if __name__ == "__main__":
     app.run(use_reloader=False)
+
