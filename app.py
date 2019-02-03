@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, send_from_directory
 import requests,pprint,math
+import os
 app = Flask(__name__,template_folder=".")
 key = 'AIzaSyCxb7VjOyG0RqazuliBkyZlP3h437hshkk'
 
@@ -41,7 +42,7 @@ def safety(paths):
     best = []
     for route in paths:
         path = route['overview_path']
-        for i in range(0,len(path),5):
+        for i in range(0,len(path),7):
             lat = path[i]['lat']
             lng = path[i]['lng']
             url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str(lat)+","+str(lng)+"&radius=100&type="
@@ -108,17 +109,40 @@ def  arrangement(index):
     print(l)
     return l
 
-<<<<<<< HEAD
 @app.route('/sos',methods=['POST'])
 def sos():
     data = request.json
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+str(data['lat'])+','+str(data['lng'])+'&key='+key
+    resp = requests.get(url)
+    d = resp.json()
+    print(d)
+    addr = d['results'][0]['formatted_address']
+    url = 'https://www.fast2sms.com/dev/bulk'
+    print(data)
+    numl = []
+    for i in range(1, 4):
+        if data['emc'+str(i)] != '':
+            numl.append(data['emc'+str(i)])
+    nums = ','.join(numl)
+    print(nums)
+    params = {
+        'sender_id':'FSTSMS',
+        'message': 'ALERT\nYou are getting this message because your friend '+data['username']+' sent an SOS signal.\nTheir location is: '+addr,
+        'numbers': nums,
+        'language':'english',
+        'route':'p'
+    }
+    resp = requests.post(url, data=params, headers={'authorization': 'qe0xOBau29VkSQDdHmcFKX8forMGwj5gRtyPiNhpZJlE4UW6bYuP5pnKdFJX4q7WYQhf3HR61iGxCNzI'})
+    # print(resp.text)
     print(data)
     return jsonify(data)
 
-=======
+
 @app.route('/<path:path>')
 def send_js(path):
     return send_from_directory('.', path)
->>>>>>> fdab3135d86494bd604002ccc7a72d935a7d7fc7
 if __name__ == "__main__":
-    app.run(use_reloader=False)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+
+

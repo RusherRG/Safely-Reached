@@ -22,7 +22,7 @@ self.addEventListener('fetch', event => {
     if(mode===false)
         event.respondWith(cacheData(request));
     else{
-        console.log(url);
+        // console.log(url);
 
         if(url.origin === location.origin) {
             event.respondWith(cacheData(request));
@@ -38,7 +38,7 @@ self.addEventListener('message', function(event){
     mode=false
     else
     mode=true
-    console.log("message: "+mode);
+    // console.log("message: "+mode);
 });
 
 self.addEventListener('notificationclick', function(event){

@@ -1,6 +1,4 @@
-/* body {
-    margin: 0;
-  } */
+
   html {
     box-sizing: border-box;
     background: #a98ccf;
@@ -13,12 +11,18 @@ body {
     max-width: 43.75em; /* 880/16 */
     margin: 0;
     padding: 0;
+    display: block;
+    height: 100%;
     color: #b6e6e4;
 }  
 ul {
     list-style-type: none;
     z-index:9;
     padding:0;
+}
+
+#contact{
+    transform: translateY(-80%);
 }
 li a {
     display: block;
@@ -36,7 +40,7 @@ a:hover {
     z-index:5;
     top:0;
     left: 0;
-    
+    display: block;
     background-color:#005;
 }
 input {
@@ -99,8 +103,9 @@ input::-webkit-search-cancel-button {
 
   .modal input{
       padding: 1rem;
-      margin: 0.2rem;
+      margin: 0.2rem auto;
       font-size: 1.5rem;
+      width:70%;
   }
   
   /* Modal Content/Box */
@@ -109,7 +114,7 @@ input::-webkit-search-cancel-button {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
     
   }
   
@@ -257,13 +262,19 @@ li a:focus:not(.active) {
     }
 
     
-
+    #sosdiv{
+        display: none;
+    }
     #ham, #sosmob{
         display: block;
     }
 
     .modal-content{
         width: 80%;
+    }
+
+    .modal input{
+        width: 100%;
     }
 
     #savecontact{
@@ -284,3 +295,18 @@ li a:focus:not(.active) {
     text-decoration: none;
     cursor: pointer;
   }
+
+#loader{
+    z-index: 11;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    
+}
+
+#load{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+}

@@ -20,6 +20,7 @@ var hamburger = function()
 
 var hamburger_out = function()
 {
+    var modal = document.getElementById('myModal');
     if(hamburger_on){
     document.getElementById('sidepane').animate(
         [
@@ -100,14 +101,19 @@ var closemodal = function()
     modal.style.display = "none";
 }
 
-var sendsos = function(){
-    var url = 'sos'
+
+function getPsn(position) {
+    var url = '/sos'
     var tosend = {
-        un: localStorage['userName'],
-        ec1: localStorage['emc1'],
-        ec2: localStorage['emc2'],
-        ec3: localStorage['emc3']
+        username: localStorage['userName'] || '',
+        emc1: localStorage['emc1'] || '',
+        emc2: localStorage['emc2'] || '',
+        emc3: localStorage['emc3'] || '',
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
     }
+    
+    console.log(tosend);
     fetch(url, {
     method: 'POST',
     headers: {
@@ -115,5 +121,13 @@ var sendsos = function(){
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(tosend)
-    }).then(response=>console.log(response));
+    }).then(response=>{console.log(response);
+    alert('SOS Sent!')
+    });
+    
+}
+
+var sendsos = function(){
+    navigator.geolocation.getCurrentPosition(getPsn);
+
 }

@@ -23,16 +23,16 @@
             
                             <div id="Direct">Search</div>
                     </div>
-                <li><a href="#News">News</a></li>
                 <li><a id = "contact" onclick="contacts()">Contact</a></li>
                 
         </ul>
+        
         <div id="sosdiv">
             <div id="sosbutton" onclick="sendsos()">SOS</div>
         </div>
     </div>
     <div id="ham" onclick="hamburger()"><i class="fas fa-bars"></i></div>
-    <div id="sosmob" onclick="alert('sos')"> <i class="fas fa-exclamation-circle"></i></div>
+    <div id="sosmob" onclick="sendsos()"> <i class="fas fa-exclamation-circle"></i></div>
           
     <div id="mapshow" onclick="hamburger_out()">
         <div id="map"></div>
@@ -51,7 +51,9 @@
     </div>
     </div>
     
-        
+    <div id="loader" style="display:none">
+      <img src="./static/images/Gear-1s-200px.svg" id="load">
+    </div>
     
     <script>
         var map;
@@ -109,6 +111,10 @@
                   markers.push(marker);
             });
 
+            document.getElementById('loader').style.display="none";
+
+            
+
                   /*data = JSON.parse(jsonr).data;
                   extra = JSON.parse(jsonr).extra;
                   directionsDisplay.setDirections(JSON.stringify(data));*/
@@ -128,12 +134,15 @@
         // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
         var onChangeHandler = function() {
+          hamburger_out();
+          document.getElementById('loader').style.display="block";
+          
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
         //document.getElementById('start').addEventListener('change', onChangeHandler);
         //document.getElementById('end').addEventListener('change', onChangeHandler);
         document.getElementById('Direct').addEventListener('click',onChangeHandler);
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition);
       }
 
 
