@@ -25,18 +25,20 @@ def getRoutes():
 def findsafety():
     data = request.json
     path = data['routes']
-    rearranged = safety(path)
+    rearranged, extra = safety(path)
     routes = [0]*len(rearranged)
     for i in range(len(rearranged)):
         routes[i] = data['routes'][rearranged[i]]
     data['routes'] = routes
-    return jsonify(data)
+    bDi = {'data': data, 'extra': extra}
+    return jsonify(bDi)
 def safety(paths):
     print("#Routes :",len(paths))
     factors = ["bakery","bank","beauty_salon","bicycle_store","book_store","cafe","city_hall","clothing_store","convenience_store","courthouse","dentist","department_store","doctor","electronics_store","fire_station","florist","furniture_store","gas_station","home_goods_store","hospital","jewelry_store","library","local_government_office","lodging","movie_theater","pet_store","pharmacy","police","post_office","restaurant","school","shoe_store","shopping_mall","stadium","subway_station","supermarket","synagogue","train_station","transit_station","zoo"]
     index = []
     Places = []
     count = 0
+    best = []
     for route in paths:
         path = route['overview_path']
         for i in range(0,len(path),5):
@@ -55,7 +57,7 @@ def safety(paths):
                         Places.append(place)
                         break
         index.append([0 for i in range(len(path))])
-        best = []
+        best2=[]
         for i in range(len(path)):
             l = []
             for place in Places:
@@ -63,15 +65,15 @@ def safety(paths):
                 y = place['geometry']['location']['lng']
                 x1 = path[i]['lat']
                 y1 = path[i]['lng']
-                print(math.sqrt((x-x1)**2 + (y-y1)**2)*111319.444444)
-                if math.sqrt((x-x1)**2 + (y-y1)**2)*111319.444444 <= 20:
+                #print(math.sqrt((x-x1)**2 + (y-y1)**2)*111319.444444)
+                if math.sqrt((x-x1)**2 + (y-y1)**2)*111319.444444 <= 50:
                     l.append(place)
                     index[-1][i] += 1
-            best.append(l)
+            best2.append(l)
+        best.append(best2)
     rearranged = arrangement(index)
     print(index)
-    return rearranged
-    
+    return rearranged, best[rearranged[0]]
 
 def  arrangement(index):
     # mxsf : max so far
@@ -105,5 +107,12 @@ def  arrangement(index):
                         l[i], l[i+1] = l[i+1], l[i]
     print(l)
     return l
+
+@app.route('/sos',methods=['POST'])
+def sos():
+    data = request.json
+    print(data)
+    return jsonify(data)
+
 if __name__ == "__main__":
     app.run(use_reloader=False)

@@ -82,3 +82,21 @@ var closemodal = function()
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
 }
+
+var sendsos = function(){
+    var url = 'sos'
+    var tosend = {
+        un: localStorage['userName'],
+        ec1: localStorage['emc1'],
+        ec2: localStorage['emc2'],
+        ec3: localStorage['emc3']
+    }
+    fetch(url, {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(tosend)
+    }).then(response=>console.log(response));
+}

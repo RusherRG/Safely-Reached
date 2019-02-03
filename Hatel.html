@@ -27,7 +27,7 @@
                 
         </ul>
         <div id="sosdiv">
-            <div id="sosbutton">SOS</div>
+            <div id="sosbutton" onclick="sendsos()">SOS</div>
         </div>
     </div>
     <div id="ham" onclick="hamburger()"><i class="fas fa-bars"></i></div>
@@ -53,8 +53,66 @@
         
     
     <script>
-        var map
-        
+        var map;
+        var markers=[];
+
+        function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+
+        function clearMarkers() {
+          setMapOnAll(null);
+          markers = [];
+        }
+
+       async function plotmap(response, directionsDisplay)
+       {
+        var url = 'findsafety'
+            var f = await fetch(url, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(response)
+              });
+              console.log(f);
+              var jsonr = await f.json()
+              console.log(jsonr);
+              directionsDisplay.setDirections(jsonr.data);
+              var posn = [];
+
+              clearMarkers();
+              var features = [];
+              var extra = jsonr.extra;
+              for (var i = 0; i<extra.length; i++)
+              {
+                for(var j = 0; j< extra[i].length; j++)
+                {
+                  posn.push([extra[i][j].geometry.location.lat, extra[i][j].geometry.location.lng]);
+                  features.push({position: new google.maps.LatLng(posn[posn.length-1][0], posn[posn.length-1][1])});
+                }
+              }
+              console.log(features);
+
+              features.forEach(function(feature) {
+                
+              var marker = new google.maps.Marker({
+                    position: feature.position,
+                    map: map
+                  });
+
+                  markers.push(marker);
+            });
+
+                  /*data = JSON.parse(jsonr).data;
+                  extra = JSON.parse(jsonr).extra;
+                  directionsDisplay.setDirections(JSON.stringify(data));*/
+                
+       } 
       function initMap() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
@@ -95,15 +153,7 @@
           if (status === 'OK') {
             console.log(response);
 
-            var url = 'findsafety'
-            fetch(url, {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(response)
-              }).then(response=>response.json()).then(jsonr => {directionsDisplay.setDirections(jsonr)});
+            plotmap(response, directionsDisplay);
             //directionsDisplay.setDirections(response);
           } else {
             window.alert('Directions request failed due to ' + status);
