@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, send_from_directory
 import requests,pprint,math
+import os
 app = Flask(__name__,template_folder=".")
 key = 'AIzaSyCxb7VjOyG0RqazuliBkyZlP3h437hshkk'
 
@@ -141,5 +142,7 @@ def sos():
 def send_js(path):
     return send_from_directory('.', path)
 if __name__ == "__main__":
-    app.run(use_reloader=False)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+
 
