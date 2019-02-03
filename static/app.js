@@ -100,14 +100,18 @@ var closemodal = function()
     modal.style.display = "none";
 }
 
-var sendsos = function(){
+
+function getPsn(position) {
     var url = '/sos'
     var tosend = {
         username: localStorage['userName'] || '',
         emc1: localStorage['emc1'] || '',
         emc2: localStorage['emc2'] || '',
-        emc3: localStorage['emc3'] || ''
+        emc3: localStorage['emc3'] || '',
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
     }
+    
     console.log(tosend);
     fetch(url, {
     method: 'POST',
@@ -117,4 +121,8 @@ var sendsos = function(){
     },
     body: JSON.stringify(tosend)
     }).then(response=>console.log(response));
+}
+
+var sendsos = function(){
+    navigator.geolocation.getCurrentPosition(getPsn);
 }
