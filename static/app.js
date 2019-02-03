@@ -120,9 +120,13 @@ function getPsn(position) {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(tosend)
-    }).then(response=>console.log(response));
+    }).then(response=>{console.log(response);
+    alert('SOS Sent!')
+    });
+    
 }
 
 var sendsos = function(){
     navigator.geolocation.getCurrentPosition(getPsn);
+
 }

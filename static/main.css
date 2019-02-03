@@ -13,6 +13,8 @@ body {
     max-width: 43.75em; /* 880/16 */
     margin: 0;
     padding: 0;
+    display: block;
+    height: 100%;
     color: #b6e6e4;
 }  
 ul {
@@ -32,7 +34,7 @@ a:hover {
 #sidepane{
     position: absolute;
     width:25vw;
-    height: 100vh;
+    height: 100%;
     z-index:5;
     top:0;
     left: 0;
