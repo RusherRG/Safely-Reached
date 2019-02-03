@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 import requests,pprint,math
 app = Flask(__name__,template_folder=".")
 key = 'AIzaSyCxb7VjOyG0RqazuliBkyZlP3h437hshkk'
@@ -108,11 +108,17 @@ def  arrangement(index):
     print(l)
     return l
 
+<<<<<<< HEAD
 @app.route('/sos',methods=['POST'])
 def sos():
     data = request.json
     print(data)
     return jsonify(data)
 
+=======
+@app.route('/<path:path>')
+def send_js(path):
+    return send_from_directory('.', path)
+>>>>>>> fdab3135d86494bd604002ccc7a72d935a7d7fc7
 if __name__ == "__main__":
     app.run(use_reloader=False)

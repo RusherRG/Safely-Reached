@@ -40,6 +40,23 @@ var hamburger_out = function()
 
 }
 
+window.addEventListener('load', async e => {
+    
+    console.log(navigator.onLine);
+    if ('serviceWorker' in navigator) {
+        try {
+            navigator.serviceWorker.register('/serviceworker.js');
+            console.log('SW registered');
+        } catch (error) {
+            console.log('SW failed');
+
+        }
+    }
+   
+    
+    
+});
+
 var contacts = function()
 {
     var userName = localStorage['userName'];
