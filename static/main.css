@@ -1,6 +1,4 @@
-/* body {
-    margin: 0;
-  } */
+
   html {
     box-sizing: border-box;
     background: #a98ccf;
@@ -264,7 +262,9 @@ li a:focus:not(.active) {
     }
 
     
-
+    #sosdiv{
+        display: none;
+    }
     #ham, #sosmob{
         display: block;
     }
