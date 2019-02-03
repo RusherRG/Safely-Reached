@@ -26,6 +26,7 @@
                 <li><a id = "contact" onclick="contacts()">Contact</a></li>
                 
         </ul>
+        
         <div id="sosdiv">
             <div id="sosbutton" onclick="sendsos()">SOS</div>
         </div>
@@ -50,7 +51,9 @@
     </div>
     </div>
     
-        
+    <div id="loader" style="display:none">
+      <img src="./static/images/Gear-1s-200px.svg" id="load">
+    </div>
     
     <script>
         var map;
@@ -108,6 +111,10 @@
                   markers.push(marker);
             });
 
+            document.getElementById('loader').style.display="none";
+
+            
+
                   /*data = JSON.parse(jsonr).data;
                   extra = JSON.parse(jsonr).extra;
                   directionsDisplay.setDirections(JSON.stringify(data));*/
@@ -127,6 +134,9 @@
         // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
         var onChangeHandler = function() {
+          hamburger_out();
+          document.getElementById('loader').style.display="block";
+          
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
         //document.getElementById('start').addEventListener('change', onChangeHandler);

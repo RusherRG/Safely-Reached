@@ -42,7 +42,7 @@ def safety(paths):
     best = []
     for route in paths:
         path = route['overview_path']
-        for i in range(0,len(path),5):
+        for i in range(0,len(path),7):
             lat = path[i]['lat']
             lng = path[i]['lng']
             url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str(lat)+","+str(lng)+"&radius=100&type="

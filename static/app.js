@@ -20,6 +20,7 @@ var hamburger = function()
 
 var hamburger_out = function()
 {
+    var modal = document.getElementById('myModal');
     if(hamburger_on){
     document.getElementById('sidepane').animate(
         [
