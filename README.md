@@ -1,4 +1,5 @@
-<h1 align = "center">Safely Reached</h3>
+<div align = "center">
+<img src="./assets/logo.png" width=200px/>
 <h3 align="center">Safe Travel Routes for a Happy Journey</h3>
 
 <div align="center">
