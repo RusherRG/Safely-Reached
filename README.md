@@ -1,5 +1,6 @@
 <div align = "center">
 <img src="./assets/logo.png" width=200px/>
+ </div>
 <h3 align="center">Safe Travel Routes for a Happy Journey</h3>
 
 <div align="center">
