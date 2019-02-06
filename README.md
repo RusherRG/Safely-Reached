@@ -1,18 +1,3 @@
-# DotSlash
-
-## Idea
-
-Safely Reached
-
-- ~~Get API Key~~
-- ~~Integrate Google Maps~~
-- ~~Get Routes (Alternate)~~
-- ~~Get Places Open (In the path)~~
-- ~~Database Integration (MongoDB)~~ Using Local Web data
-- ~~Live Location (SOS)~~
-- NeighbourHood Crimes (News/Twitter) 
-
-
 <h1 align = "center">Safely Reached</h3>
 <h3 align="center">Safe Travel Routes for a Happy Journey</h3>
 
@@ -38,21 +23,17 @@ Safely Reached
 
 > The `safest route` is chosen on the basis of the liveliness on a particular street like open restaurants,pharmacies,petrol pumps, hospitals etc.
 
-> If it not possible to find a route with optimum level of safety there is an option to send an SOS alert to their close ones. 
+> If it not possible to find a route with optimum level of safety there is an option to send an SOS alert to their close ones.
 
+##### Web-App
+<div align = "center">
+<img src="./assets/Input.jpg" width=200px/>
+<br/><br/>
+<img src="./assets/Route.jpg" width=200px/>
+<br/><br/>
+<img src="./assets/SOS.jpg" width=200px/>
+<br/><br/>
 
-<div align="center">
-<br>
-<img src="./Sim.gif" width=700px>
-
-<br>
-
-<img src="./Optimize.png" width=700px><br>
-
-<br>
-
-<img src="./Bot1.jpeg" width=350px>
-<img src="./Bot2.jpeg" width=350px>
 </div>
 
 ------------------------------------------
@@ -60,7 +41,7 @@ Safely Reached
 ### Future Add-Ons
 
 - [ ] In case of extreme emergencies an alert can be sent to the respective police authorities.
-- [ ] Taking into consideration the traffic congestion on the streets. 
+- [ ] Taking into consideration the traffic congestion on the streets.
 
 
 
@@ -84,4 +65,4 @@ Safely Reached
 
 ------------------------------------------
 
-This repository / project was a part of SVNIT DotSlash Hackathon 2k19.  
+This repository / project was a part of SVNIT DotSlash Hackathon 2k19 which secured a 2nd runners up position.  
