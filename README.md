@@ -43,7 +43,7 @@ Add the Google Maps API key in `.env`
 Using Docker
 ```
 docker build . -t safelyreached
-docker run safelyreached
+docker run -p 5000:5000 safelyreached
 ```
 
 Using Python
