@@ -1,13 +1,21 @@
 from flask import Flask, request, jsonify, render_template, send_from_directory
-import requests,pprint,math
+from dotenv import load_dotenv
+import requests
+import pprint
+import math
 import os
-app = Flask(__name__,template_folder=".")
-key = 'AIzaSyCxb7VjOyG0RqazuliBkyZlP3h437hshkk'
+
+load_dotenv()
+key = os.getenv('KEY')
+
+app = Flask(__name__)
+
 
 @app.route('/')
 def test():
-    return render_template('Hatel.html')
-    
+    return render_template('map.html', key=key)
+
+
 @app.route('/getRoutes', methods=['GET'])
 def getRoutes():
     print(request.args)
@@ -15,12 +23,15 @@ def getRoutes():
     destination = request.args.get('destination')
     source.replace(' ', '+')
     destination.replace(' ', '+')
-    url = 'https://maps.googleapis.com/maps/api/directions/json?origin='+source+'&destination='+destination+'&sensor=false&alternatives=true&mode=driving&key='+key
+    url = 'https://maps.googleapis.com/maps/api/directions/json?origin='+source + \
+        '&destination='+destination+'&sensor=false&alternatives=true&mode=driving&key='+key
     r = requests.get(url)
     r = r.text
     d = eval(r)
-    d['routes']=d['routes'][0:1]
+    print(d)
+    d['routes'] = d['routes'][0:1]
     return jsonify(d)
+
 
 @app.route('/findsafety', methods=['POST'])
 def findsafety():
@@ -33,19 +44,23 @@ def findsafety():
     data['routes'] = routes
     bDi = {'data': data, 'extra': extra}
     return jsonify(bDi)
+
+
 def safety(paths):
-    print("#Routes :",len(paths))
-    factors = ["bakery","bank","beauty_salon","bicycle_store","book_store","cafe","city_hall","clothing_store","convenience_store","courthouse","dentist","department_store","doctor","electronics_store","fire_station","florist","furniture_store","gas_station","home_goods_store","hospital","jewelry_store","library","local_government_office","lodging","movie_theater","pet_store","pharmacy","police","post_office","restaurant","school","shoe_store","shopping_mall","stadium","subway_station","supermarket","synagogue","train_station","transit_station","zoo"]
+    print("#Routes :", len(paths))
+    factors = ["bakery", "bank", "beauty_salon", "bicycle_store", "book_store", "cafe", "city_hall", "clothing_store", "convenience_store", "courthouse", "dentist", "department_store", "doctor", "electronics_store", "fire_station", "florist", "furniture_store", "gas_station", "home_goods_store",
+               "hospital", "jewelry_store", "library", "local_government_office", "lodging", "movie_theater", "pet_store", "pharmacy", "police", "post_office", "restaurant", "school", "shoe_store", "shopping_mall", "stadium", "subway_station", "supermarket", "synagogue", "train_station", "transit_station", "zoo"]
     index = []
     Places = []
     count = 0
     best = []
     for route in paths:
         path = route['overview_path']
-        for i in range(0,len(path),7):
+        for i in range(0, len(path), 7):
             lat = path[i]['lat']
             lng = path[i]['lng']
-            url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str(lat)+","+str(lng)+"&radius=100&type="
+            url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + \
+                str(lat)+","+str(lng)+"&radius=100&type="
             for factor in factors:
                 url += str(factor)+","
             url = url[:-1]
@@ -58,7 +73,7 @@ def safety(paths):
                         Places.append(place)
                         break
         index.append([0 for i in range(len(path))])
-        best2=[]
+        best2 = []
         for i in range(len(path)):
             l = []
             for place in Places:
@@ -76,7 +91,8 @@ def safety(paths):
     print(index)
     return rearranged, best[rearranged[0]]
 
-def  arrangement(index):
+
+def arrangement(index):
     # mxsf : max so far
     # lc : least count. longest sequence of the least number
     l = [i for i in range(len(index))]
@@ -103,16 +119,18 @@ def  arrangement(index):
                     for k in range(2):
                         for e in index[l[i+k]]:
                             if e == mv:
-                                counts[k]+=1
+                                counts[k] += 1
                     if counts[0] > counts[1]:
                         l[i], l[i+1] = l[i+1], l[i]
     print(l)
     return l
 
-@app.route('/sos',methods=['POST'])
+
+@app.route('/sos', methods=['POST'])
 def sos():
     data = request.json
-    url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+str(data['lat'])+','+str(data['lng'])+'&key='+key
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + \
+        str(data['lat'])+','+str(data['lng'])+'&key='+key
     resp = requests.get(url)
     d = resp.json()
     print(d)
@@ -126,13 +144,14 @@ def sos():
     nums = ','.join(numl)
     print(nums)
     params = {
-        'sender_id':'FSTSMS',
+        'sender_id': 'FSTSMS',
         'message': 'ALERT\nYou are getting this message because your friend '+data['username']+' sent an SOS signal.\nTheir location is: '+addr,
         'numbers': nums,
-        'language':'english',
-        'route':'p'
+        'language': 'english',
+        'route': 'p'
     }
-    resp = requests.post(url, data=params, headers={'authorization': 'qe0xOBau29VkSQDdHmcFKX8forMGwj5gRtyPiNhpZJlE4UW6bYuP5pnKdFJX4q7WYQhf3HR61iGxCNzI'})
+    resp = requests.post(url, data=params, headers={
+                         'authorization': 'qe0xOBau29VkSQDdHmcFKX8forMGwj5gRtyPiNhpZJlE4UW6bYuP5pnKdFJX4q7WYQhf3HR61iGxCNzI'})
     # print(resp.text)
     print(data)
     return jsonify(data)
@@ -141,8 +160,8 @@ def sos():
 @app.route('/<path:path>')
 def send_js(path):
     return send_from_directory('.', path)
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-
-

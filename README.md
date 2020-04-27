@@ -5,15 +5,11 @@
 
 <div align="center">
 
-
 [![made-with-python](https://forthebadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 [![made-with-javascript](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://www.javascript.org/)
 
-
 <br>
-
-
 
 </div>
 
@@ -23,11 +19,12 @@
 
 > Safely reached considers all the possible routes and gives you the shortest but also the **SAFEST** route for your journey.
 
-> The `safest route` is chosen on the basis of the liveliness on a particular street like open restaurants,pharmacies,petrol pumps, hospitals etc.
+> The `safest route` is chosen on the basis of the liveliness on a particular street like open restaurants, pharmacies, petrol pumps, hospitals etc.
 
 > If it not possible to find a route with optimum level of safety there is an option to send an SOS alert to their close ones.
 
 ##### Web-App
+
 <div align = "center">
 <img src="./assets/Input.jpg" width=200px/>
 <br/><br/>
@@ -39,31 +36,45 @@
 </div>
 
 ------------------------------------------
+### Installation and Deployment
+
+Add the Google Maps API key in `.env`
+
+Using Docker
+```
+docker build . -t safelyreached
+docker run safelyreached
+```
+
+Using Python
+```
+python3 app.py
+```
+
+------------------------------------------
 
 ### Future Add-Ons
 
-- [ ] In case of extreme emergencies an alert can be sent to the respective police authorities.
-- [ ] Taking into consideration the traffic congestion on the streets.
-
-
-
+* [ ] In case of extreme emergencies an alert can be sent to the respective police authorities.
+* [ ] Taking into consideration the traffic congestion on the streets.
 
 ------------------------------------------
+
 ### Contributing
+
  We're are open to `enhancements` & `bug-fixes` :smile: Also do have a look [here](./CONTRIBUTING.md)
 
 ### Note
 
- This project was done under `30 hours with minimal pre-preparation`
-
+ This project was done under `30 hours with minimal pre-preparation` 
 
 ------------------------------------------
+
 ### Contributors
 
-- [@hetzz](https://github.com/hetzz)
-- [@Rusherrg](https://github.com/RusherRG)
-- [@akshay-99](https://github.com/akshay-99)
-
+* [@hetzz](https://github.com/hetzz)
+* [@Rusherrg](https://github.com/RusherRG)
+* [@akshay-99](https://github.com/akshay-99)
 
 ------------------------------------------
 
